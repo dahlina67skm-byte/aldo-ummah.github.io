@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Modul Interaktif: Pengenalan Cybersecurity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            line-height: 1.6;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* ===== FUTURISTIC HEADER/COVER SECTION ===== */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f4e 50%, #2d0a4e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+            animation: blob-animation 8s infinite;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: #667eea;
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: #764ba2;
+            bottom: -150px;
+            right: -100px;
+            animation-delay: 2s;
+        }
+
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: #f093fb;
+            top: 50%;
+            right: -150px;
+            animation-delay: 4s;
+        }
+
+        @keyframes blob-animation {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            75% {
+                transform: translate(50px, 50px) scale(1.05);
+            }
+        }
+
+        .grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 40px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .security-icon-wrapper {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .security-icon {
+            font-size: 80px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .security-icon:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .security-icon:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .security-icon:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-title {
+            font-size: 4.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+            animation: slideDown 1s ease-out;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8em;
+            color: #b8c5f6;
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: 1.1em;
+            color: #a0b4e6;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            padding: 18px 45px;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: #667eea;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.6));
+                text-shadow: 0 0 20px rgba(240, 147, 251, 0.4);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(240, 147, 251, 0.8));
+                text-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+            }
+        }
+
+        .aldo-signature {
+            font-size: 2.2em;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            animation: slideUp 1s ease-out 0.1s both, glowPulse 3s infinite;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #667eea 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideUp 1s ease-out 0.1s both, glowPulse 3s infinite;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 30px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f4e 100%);
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #b8c5f6;
+        }
+
+        /* ===== MAIN CONTENT AREA ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(26, 31, 78, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #667eea;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 150px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            background: transparent;
+            font-size: 1em;
+            font-weight: 600;
+            color: #b8c5f6;
+        }
+
+        .nav-tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .content {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f4e 50%, #2d0a4e 100%);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            color: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-color: #764ba2;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .grid-item {
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .grid-item:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid;
+            backdrop-filter: blur(10px);
+        }
+
+        .alert-info {
+            background: rgba(23, 162, 184, 0.1);
+            border-color: #17a2b8;
+            color: #a8d5e0;
+        }
+
+        .alert-warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-color: #ffc107;
+            color: #ffd966;
+        }
+
+        .alert-success {
+            background: rgba(40, 167, 69, 0.1);
+            border-color: #28a745;
+            color: #9adc9a;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f4e 100%);
+            color: #b8c5f6;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s;
+            border-radius: 10px;
+        }
+
+        .quiz {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .quiz-option {
+            background: rgba(10, 14, 39, 0.6);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            margin-bottom: 10px;
+        }
+
+        .quiz-option:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #667eea;
+        }
+
+        .quiz-option.correct {
+            border-color: #28a745;
+            background: rgba(40, 167, 69, 0.2);
+        }
+
+        .quiz-option.wrong {
+            border-color: #dc3545;
+            background: rgba(220, 53, 69, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5em;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .nav-tab {
+                font-size: 0.9em;
+                padding: 15px 10px;
+            }
+
+            .section h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== FUTURISTIC HERO SECTION ===== -->
+        <div class="hero-section">
+            <div class="animated-bg">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+                <div class="grid-bg"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="security-icon-wrapper">
+                    <div class="security-icon">🔐</div>
+                    <div class="security-icon">🛡️</div>
+                    <div class="security-icon">⚡</div>
+                </div>
+
+                <h1 class="hero-title">CYBERSECURITY</h1>
+                <p class="aldo-signature">By ALDO</p>
+                <p class="hero-subtitle">Melindungi Dunia Digital Anda</p>
+                
+                <p class="hero-description">
+                    Pelajari dasar-dasar keamanan siber modern dengan cara yang interaktif dan menyenangkan. 
+                    Dari ancaman digital hingga strategi proteksi, kuasai skill yang esensial di era digital ini.
+                </p>
+
+                <div class="cta-buttons">
+                    <button class="btn-primary" onclick="startLearning()">🚀 Mulai Belajar</button>
+                    <button class="btn-secondary" onclick="scrollToStats()">📊 Lihat Statistik</button>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- ===== STATS SECTION ===== -->
+        <div class="stats-section" id="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">$6T</div>
+                    <div class="stat-label">Kerugian Global Cybercrime (2021)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30K+</div>
+                    <div class="stat-label">Website Diretas per Hari</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Serangan dari Human Error</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== NAVIGATION TABS ===== -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('pengantar')">📚 Pengantar</button>
+            <button class="nav-tab" onclick="showSection('konsep')">💡 Konsep</button>
+            <button class="nav-tab" onclick="showSection('ancaman')">⚠️ Ancaman</button>
+            <button class="nav-tab" onclick="showSection('proteksi')">🛡️ Proteksi</button>
+            <button class="nav-tab" onclick="showSection('praktik')">🎯 Praktik</button>
+            <button class="nav-tab" onclick="showSection('quiz')">📝 Kuis</button>
+        </div>
+
+        <!-- ===== CONTENT SECTIONS ===== -->
+        <div class="content">
+            <!-- SECTION 1: PENGANTAR -->
+            <div id="pengantar" class="section active">
+                <h2>Selamat Datang di Dunia Cybersecurity! 🌐</h2>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Tujuan Pembelajaran:</strong><br>
+                    Setelah menyelesaikan modul ini, Anda akan mampu:
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Memahami konsep dasar keamanan siber</li>
+                        <li>Mengidentifikasi berbagai jenis ancaman siber</li>
+                        <li>Menerapkan praktik keamanan terbaik</li>
+                        <li>Melindungi data dan informasi pribadi</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🔒</div>
+                    <h3>Apa itu Cybersecurity?</h3>
+                    <p><strong>Cybersecurity</strong> adalah praktik melindungi sistem komputer, jaringan, program, dan data dari serangan digital. Di era digital saat ini, cybersecurity menjadi sangat penting karena hampir semua aspek kehidupan kita terhubung dengan internet.</p>
+                </div>
+
+                <!-- STATISTICS SECTION - ENHANCED -->
+                <div style="margin: 40px 0; padding: 0;">
+                    <h3 style="text-align: center; color: #667eea; margin-bottom: 30px; font-size: 1.8em;">📊 Mengapa Cybersecurity Penting - Data & Statistik</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px;">
+                        
+                        <!-- CARD 1: KERUGIAN GLOBAL -->
+                        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%); border: 2px solid rgba(102, 126, 234, 0.4); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(10px);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(102, 126, 234, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="font-size: 4em; font-weight: 900; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">$6T</div>
+                            <div style="font-size: 1.1em; color: #b8c5f6; line-height: 1.6;">
+                                <strong style="color: #667eea;">Kerugian Global Cybercrime</strong><br>
+                                <span style="font-size: 0.95em;">(2021)</span>
+                            </div>
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(102, 126, 234, 0.3); font-size: 0.9em; color: #a0b4e6;">
+                                💰 Estimated annual loss dari cyberattacks di seluruh dunia
+                            </div>
+                        </div>
+
+                        <!-- CARD 2: WEBSITE DIRETAS -->
+                        <div style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.15) 0%, rgba(245, 87, 108, 0.15) 100%); border: 2px solid rgba(240, 147, 251, 0.4); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(10px);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(240, 147, 251, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="font-size: 4em; font-weight: 900; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">30K+</div>
+                            <div style="font-size: 1.1em; color: #b8c5f6; line-height: 1.6;">
+                                <strong style="color: #f093fb;">Website Diretas</strong><br>
+                                <span style="font-size: 0.95em;">Per Hari</span>
+                            </div>
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(240, 147, 251, 0.3); font-size: 0.9em; color: #a0b4e6;">
+                                🌐 Rata-rata jumlah website yang mengalami breach setiap harinya
+                            </div>
+                        </div>
+
+                        <!-- CARD 3: HUMAN ERROR -->
+                        <div style="background: linear-gradient(135deg, rgba(160, 180, 230, 0.15) 0%, rgba(102, 126, 234, 0.15) 100%); border: 2px solid rgba(160, 180, 230, 0.4); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.3s; cursor: pointer; backdrop-filter: blur(10px);" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(160, 180, 230, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="font-size: 4em; font-weight: 900; background: linear-gradient(135deg, #a0b4e6 0%, #667eea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px;">95%</div>
+                            <div style="font-size: 1.1em; color: #b8c5f6; line-height: 1.6;">
+                                <strong style="color: #a0b4e6;">Serangan dari</strong><br>
+                                <span style="font-size: 0.95em;">Human Error</span>
+                            </div>
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(160, 180, 230, 0.3); font-size: 0.9em; color: #a0b4e6;">
+                                👤 Mayoritas cyberattacks dimulai dari kesalahan manusia
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Mengapa Cybersecurity Penting?</h3>
+                    <p style="color: #b8c5f6; margin-bottom: 20px;">Cybersecurity bukan hanya tentang teknologi, tetapi juga tentang melindungi:</p>
+                    <div class="grid">
+                        <div class="grid-item">
+                            <div class="icon">💰</div>
+                            <h4>Aset Finansial</h4>
+                            <p style="color: #b8c5f6;">Mencegah kerugian finansial dari cyber fraud dan ransomware</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">🔐</div>
+                            <h4>Data Pribadi</h4>
+                            <p style="color: #b8c5f6;">Melindungi identitas dan informasi sensitif dari pencurian</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">🏢</div>
+                            <h4>Reputasi</h4>
+                            <p style="color: #b8c5f6;">Menjaga kepercayaan pelanggan dan integritas bisnis</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">⚖️</div>
+                            <h4>Kepatuhan Regulasi</h4>
+                            <p style="color: #b8c5f6;">Memenuhi GDPR, ISO 27001, dan regulasi lainnya</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 14%;"></div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: KONSEP DASAR -->
+            <div id="konsep" class="section">
+                <h2>Konsep Dasar Cybersecurity 💡</h2>
+
+                <!-- CIA TRIAD SECTION -->
+                <div class="card">
+                    <h3>🔺 CIA Triad - Tiga Pilar Keamanan Informasi</h3>
+                    <p style="color: #b8c5f6; margin-bottom: 20px;">CIA Triad adalah fondasi utama dari keamanan informasi. Ketiga elemen ini harus bekerja bersama untuk menciptakan sistem keamanan yang komprehensif.</p>
+                    
+                    <div class="grid">
+                        <div class="grid-item">
+                            <div class="icon">🔒</div>
+                            <h4>Confidentiality (Kerahasiaan)</h4>
+                            <p style="color: #b8c5f6;">Memastikan informasi hanya dapat diakses oleh pihak yang berwenang.</p>
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 12px; border-radius: 8px; margin-top: 10px; text-align: left; font-size: 0.9em;">
+                                <strong style="color: #667eea;">Contoh:</strong>
+                                <ul style="margin: 8px 0 0 15px; color: #a0b4e6;">
+                                    <li>Enkripsi data</li>
+                                    <li>Password protection</li>
+                                    <li>Access control</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">✅</div>
+                            <h4>Integrity (Integritas)</h4>
+                            <p style="color: #b8c5f6;">Menjamin data tidak diubah atau dirusak tanpa otorisasi.</p>
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 12px; border-radius: 8px; margin-top: 10px; text-align: left; font-size: 0.9em;">
+                                <strong style="color: #667eea;">Contoh:</strong>
+                                <ul style="margin: 8px 0 0 15px; color: #a0b4e6;">
+                                    <li>Checksum verification</li>
+                                    <li>Digital signature</li>
+                                    <li>Hash functions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">🌐</div>
+                            <h4>Availability (Ketersediaan)</h4>
+                            <p style="color: #b8c5f6;">Memastikan sistem dan data dapat diakses saat dibutuhkan.</p>
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 12px; border-radius: 8px; margin-top: 10px; text-align: left; font-size: 0.9em;">
+                                <strong style="color: #667eea;">Contoh:</strong>
+                                <ul style="margin: 8px 0 0 15px; color: #a0b4e6;">
+                                    <li>Backup system</li>
+                                    <li>Redundancy</li>
+                                    <li>Load balancing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 20px; border-radius: 12px; margin-top: 25px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                        <p style="color: #b8c5f6; text-align: center; font-style: italic; margin: 0;">
+                            💡 <strong>Catatan Penting:</strong> Semua tiga elemen CIA Triad harus seimbang. Mengabaikan salah satu akan menciptakan celah keamanan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EVOLUSI TIMELINE -->
+                <div class="card">
+                    <h3>📈 Evolusi Cybersecurity Sepanjang Waktu</h3>
+                    <div style="position: relative; padding: 30px 0; margin-top: 20px;">
+                        <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, #667eea, #764ba2);"></div>
+                        
+                        <div style="margin-left: 60px; margin-bottom: 30px;">
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 5px;">🕐 1970-an: Era Awal</h4>
+                                <p style="color: #b8c5f6; margin: 0;">Virus komputer pertama (Creeper). Keamanan fokus pada proteksi fisik.</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 60px; margin-bottom: 30px;">
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 5px;">📡 1990-an: Era Internet</h4>
+                                <p style="color: #b8c5f6; margin: 0;">Munculnya antivirus komersial. Firewall mulai digunakan secara luas.</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 60px; margin-bottom: 30px;">
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 5px;">💻 2000-an: Serangan Massal</h4>
+                                <p style="color: #b8c5f6; margin: 0;">Worm seperti ILOVEYOU dan Code Red. Mulai ada regulasi keamanan data.</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 60px; margin-bottom: 30px;">
+                            <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 5px;">☁️ 2010-an: Mobile & Cloud</h4>
+                                <p style="color: #b8c5f6; margin: 0;">Ransomware menjadi ancaman besar. Keamanan cloud dan mobile prioritas.</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-left: 60px;">
+                            <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #f093fb;">
+                                <h4 style="color: #f093fb; margin-bottom: 5px;">🤖 2020-an: AI & Cyber Warfare</h4>
+                                <p style="color: #b8c5f6; margin: 0;">AI untuk deteksi ancaman. Cyberattack jadi bagian konflik geopolitik.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOMPONEN KEAMANAN -->
+                <div class="card">
+                    <h3>🏗️ Komponen Cybersecurity</h3>
+                    <p style="color: #b8c5f6; margin-bottom: 20px;">Cybersecurity terdiri dari beberapa komponen yang saling terkait:</p>
+                    
+                    <div class="grid">
+                        <div class="grid-item">
+                            <div class="icon">🌐</div>
+                            <h4>Network Security</h4>
+                            <p style="color: #b8c5f6;">Melindungi jaringan dari intrusi dan akses tidak sah.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Tools: Firewall, IDS, VPN</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">💻</div>
+                            <h4>Application Security</h4>
+                            <p style="color: #b8c5f6;">Mengamankan software dari vulnerability dan exploit.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Tools: Code review, Penetration testing</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">📊</div>
+                            <h4>Information Security</h4>
+                            <p style="color: #b8c5f6;">Melindungi integritas dan privasi data organisasi.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Tools: Encryption, DLP</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">⚙️</div>
+                            <h4>Operational Security</h4>
+                            <p style="color: #b8c5f6;">Proses penanganan dan proteksi aset data.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Tools: Access control, Monitoring</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">🆘</div>
+                            <h4>Disaster Recovery</h4>
+                            <p style="color: #b8c5f6;">Rencana respons dan pemulihan dari insiden keamanan.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Tools: Backup, Failover system</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">👥</div>
+                            <h4>End-user Education</h4>
+                            <p style="color: #b8c5f6;">Melatih pengguna tentang best practices keamanan.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Tools: Training, Awareness program</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LAYER KEAMANAN -->
+                <div class="card">
+                    <h3>🛡️ Defense in Depth (Pertahanan Berlapis)</h3>
+                    <p style="color: #b8c5f6; margin-bottom: 20px;">Keamanan yang efektif memerlukan multiple layers - jika satu layer terjadi breach, layer lain masih bisa melindungi:</p>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); padding: 30px; border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 15px 20px; border-radius: 8px; color: white; font-weight: bold; min-width: 40px; text-align: center;">1</div>
+                            <div>
+                                <h4 style="color: #667eea; margin: 0 0 5px 0;">Perimeter Security</h4>
+                                <p style="color: #b8c5f6; margin: 0; font-size: 0.95em;">Firewall, DDoS protection, Network gateway</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 15px 20px; border-radius: 8px; color: white; font-weight: bold; min-width: 40px; text-align: center;">2</div>
+                            <div>
+                                <h4 style="color: #667eea; margin: 0 0 5px 0;">Network Security</h4>
+                                <p style="color: #b8c5f6; margin: 0; font-size: 0.95em;">IDS/IPS, VPN, Network segmentation</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 15px 20px; border-radius: 8px; color: white; font-weight: bold; min-width: 40px; text-align: center;">3</div>
+                            <div>
+                                <h4 style="color: #667eea; margin: 0 0 5px 0;">Host Security</h4>
+                                <p style="color: #b8c5f6; margin: 0; font-size: 0.95em;">Antivirus, Host-based firewall, Endpoint protection</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 15px 20px; border-radius: 8px; color: white; font-weight: bold; min-width: 40px; text-align: center;">4</div>
+                            <div>
+                                <h4 style="color: #667eea; margin: 0 0 5px 0;">Application Security</h4>
+                                <p style="color: #b8c5f6; margin: 0; font-size: 0.95em;">Secure coding, Input validation, Authentication</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 15px 20px; border-radius: 8px; color: white; font-weight: bold; min-width: 40px; text-align: center;">5</div>
+                            <div>
+                                <h4 style="color: #667eea; margin: 0 0 5px 0;">Data Security</h4>
+                                <p style="color: #b8c5f6; margin: 0; font-size: 0.95em;">Encryption, DLP, Access control, Backup</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TREN CYBERSECURITY 2024 -->
+                <div class="card">
+                    <h3>🚀 Tren Cybersecurity 2024</h3>
+                    <div class="grid">
+                        <div class="grid-item">
+                            <div class="icon">🤖</div>
+                            <h4>AI & Machine Learning</h4>
+                            <p style="color: #b8c5f6;">AI untuk deteksi anomali dan respons ancaman otomatis.</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">⛓️</div>
+                            <h4>Zero Trust Model</h4>
+                            <p style="color: #b8c5f6;">"Never trust, always verify" - verifikasi setiap akses.</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">☁️</div>
+                            <h4>Cloud Security</h4>
+                            <p style="color: #b8c5f6;">Keamanan data di cloud computing semakin penting.</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">🔐</div>
+                            <h4>Quantum-Ready</h4>
+                            <p style="color: #b8c5f6;">Persiapan enkripsi untuk era quantum computing.</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">👁️</div>
+                            <h4>SOAR Platform</h4>
+                            <p style="color: #b8c5f6;">Security Orchestration untuk respons ancaman cepat.</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">📱</div>
+                            <h4>IoT Security</h4>
+                            <p style="color: #b8c5f6;">Keamanan perangkat IoT yang semakin banyak.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 28%;"></div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: ANCAMAN SIBER -->
+            <div id="ancaman" class="section">
+                <h2>Jenis-Jenis Ancaman Siber ⚠️</h2>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Perhatian!</strong> Memahami ancaman adalah langkah pertama dalam melindungi diri Anda di dunia digital.
+                </div>
+
+                <!-- MALWARE SECTION -->
+                <div class="card">
+                    <div class="icon">🦠</div>
+                    <h3>1. Malware (Malicious Software)</h3>
+                    <p style="color: #b8c5f6;">Software berbahaya yang dirancang untuk merusak atau mengakses sistem tanpa izin. Merupakan 60% dari semua cyberattacks.</p>
+                    
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>🦠 Virus</h4>
+                            <p style="color: #b8c5f6;">Program yang menyebar dengan menempel pada file lain dan dieksekusi oleh user.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Dampak: Corrupts files, merusak sistem</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🐛 Worm</h4>
+                            <p style="color: #b8c5f6;">Menyebar sendiri tanpa memerlukan host file, melalui network dan email.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Dampak: Consume bandwidth, crash server</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🐴 Trojan</h4>
+                            <p style="color: #b8c5f6;">Menyamar sebagai software legitimate untuk membuka backdoor akses.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Dampak: Unauthorized access, data theft</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔐 Ransomware</h4>
+                            <p style="color: #b8c5f6;">Mengenkripsi data korban dan meminta tebusan untuk dekripsi.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Dampak: Data locked, financial loss</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>👁️ Spyware</h4>
+                            <p style="color: #b8c5f6;">Memata-matai aktivitas pengguna tanpa sepengetahuannya.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Dampak: Privacy violation, data theft</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>📢 Adware</h4>
+                            <p style="color: #b8c5f6;">Menampilkan iklan yang tidak diinginkan dan memperlambat sistem.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Dampak: Performance issues, privacy risk</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(220, 53, 69, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #dc3545;">
+                        <strong style="color: #ff6b6b;">⚡ Statistik:</strong> Rata-rata biaya malware attack per perusahaan adalah <strong>$200,000</strong> per tahun.
+                    </div>
+                </div>
+
+                <!-- PHISHING SECTION -->
+                <div class="card">
+                    <div class="icon">🎣</div>
+                    <h3>2. Phishing & Social Engineering</h3>
+                    <p style="color: #b8c5f6;">Teknik penipuan untuk mendapatkan informasi sensitif dengan menyamar sebagai entitas terpercaya. Menyebabkan 90% dari data breaches.</p>
+                    
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>🎣 Email Phishing</h4>
+                            <p style="color: #b8c5f6;">Email palsu yang terlihat dari institusi terpercaya untuk mencuri kredensial.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Contoh: "Verifikasi akun Anda sekarang"</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>📱 SMS Phishing</h4>
+                            <p style="color: #b8c5f6;">Pesan SMS dengan link berbahaya atau meminta informasi personal.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Contoh: "Klaim hadiah Anda di link ini"</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔗 Spear Phishing</h4>
+                            <p style="color: #b8c5f6;">Phishing yang ditargetkan ke individu/organisasi spesifik dengan info personal.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Lebih sophisticated & effective</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🎭 Social Engineering</h4>
+                            <p style="color: #b8c5f6;">Manipulasi psikologis untuk membujuk seseorang melakukan tindakan tertentu.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Contoh: Pretexting, Baiting, Quid Pro Quo</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255, 193, 7, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid rgba(255, 193, 7, 0.3);">
+                        <strong style="color: #ffc107;">🚨 Tanda-tanda Email Phishing:</strong>
+                        <ul style="margin: 10px 0 0 20px; color: #b8c5f6;">
+                            <li>Urgency dan ancaman ("Akun akan diblokir!")</li>
+                            <li>Kesalahan tata bahasa dan ejaan</li>
+                            <li>Alamat email pengirim mencurigakan</li>
+                            <li>Link yang tidak sesuai dengan URL yang ditampilkan</li>
+                            <li>Meminta password atau data sensitif</li>
+                            <li>Logo/desain yang mirip tapi tidak identik</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DDoS SECTION -->
+                <div class="card">
+                    <div class="icon">💥</div>
+                    <h3>3. DDoS (Distributed Denial of Service)</h3>
+                    <p style="color: #b8c5f6;">Serangan yang membanjiri server dengan traffic berlebihan dari multiple sources hingga tidak dapat diakses oleh pengguna legitimate.</p>
+                    
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>📊 Volume Attack</h4>
+                            <p style="color: #b8c5f6;">Membanjiri bandwidth dengan traffic besar.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Mitigasi: Bandwidth filtering</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔗 Protocol Attack</h4>
+                            <p style="color: #b8c5f6;">Exploit kelemahan protokol network (SYN flood, DNS amplification).</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Mitigasi: Rate limiting</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🎯 Application Attack</h4>
+                            <p style="color: #b8c5f6;">Target specific application dengan HTTP requests yang besar.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Mitigasi: WAF (Web Application Firewall)</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">💡 Dampak:</strong> <span style="color: #b8c5f6;">Layanan tidak tersedia, kerugian revenue, damage pada reputasi. Rata-rata DDoS attack berlangsung 5-30 menit.</span>
+                    </div>
+                </div>
+
+                <!-- MitM SECTION -->
+                <div class="card">
+                    <div class="icon">👨‍💻</div>
+                    <h3>4. Man-in-the-Middle (MitM) Attack</h3>
+                    <p style="color: #b8c5f6;">Penyerang mencegat komunikasi antara dua pihak untuk mencuri atau memanipulasi data. Sering terjadi di WiFi publik.</p>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="color: #667eea; margin-bottom: 15px;">🔄 Cara Kerja MitM Attack:</h4>
+                        <div style="text-align: center; color: #b8c5f6;">
+                            <div style="margin-bottom: 15px;">👤 <strong>User</strong></div>
+                            <div style="color: #667eea; margin-bottom: 15px;">↓ (Mengirim data)</div>
+                            <div style="background: rgba(220, 53, 69, 0.2); padding: 10px; border-radius: 5px; margin-bottom: 15px; border: 1px solid rgba(220, 53, 69, 0.5);">🚨 <strong>ATTACKER (Intercept di sini!)</strong></div>
+                            <div style="color: #667eea; margin-bottom: 15px;">↓ (Forward data palsu)</div>
+                            <div style="margin-bottom: 15px;">🌐 <strong>Server</strong></div>
+                        </div>
+                    </div>
+
+                    <ul style="margin: 20px 0 0 20px; color: #b8c5f6;">
+                        <li><strong style="color: #667eea;">ARP Spoofing:</strong> Menipu perangkat untuk mengirim data ke attacker</li>
+                        <li><strong style="color: #667eea;">DNS Spoofing:</strong> Redirect domain ke IP palsu</li>
+                        <li><strong style="color: #667eea;">SSL Stripping:</strong> Downgrade HTTPS menjadi HTTP</li>
+                    </ul>
+                </div>
+
+                <!-- INJECTION SECTION -->
+                <div class="card">
+                    <div class="icon">💉</div>
+                    <h3>5. Injection Attacks</h3>
+                    <p style="color: #b8c5f6;">Menyisipkan kode berbahaya ke dalam input aplikasi untuk mengakses atau memanipulasi data.</p>
+                    
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>🗄️ SQL Injection</h4>
+                            <p style="color: #b8c5f6;">Menyisipkan SQL commands ke input field.</p>
+                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; margin-top: 8px; font-family: monospace; font-size: 0.85em; color: #a0b4e6;">
+                                ' OR '1'='1
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🕸️ Cross-Site Scripting</h4>
+                            <p style="color: #b8c5f6;">Inject JavaScript ke halaman web.</p>
+                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; margin-top: 8px; font-family: monospace; font-size: 0.85em; color: #a0b4e6;">
+                                &lt;script&gt;alert('XSS')&lt;/script&gt;
+                            </div>
+                        </div>
+                        <div class="grid-item">
+                            <h4>📝 Command Injection</h4>
+                            <p style="color: #b8c5f6;">Inject system commands ke aplikasi.</p>
+                            <div style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; margin-top: 8px; font-family: monospace; font-size: 0.85em; color: #a0b4e6;">
+                                ; rm -rf /
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ZERO DAY SECTION -->
+                <div class="card">
+                    <div class="icon">💣</div>
+                    <h3>6. Zero-Day Vulnerability</h3>
+                    <p style="color: #b8c5f6;">Celah keamanan yang belum diketahui oleh vendor/developer, sehingga tidak ada patch yang tersedia.</p>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%); padding: 20px; border-radius: 8px; margin-top: 15px; border: 1px solid rgba(240, 147, 251, 0.3);">
+                        <h4 style="color: #f093fb; margin-bottom: 10px;">⏰ Timeline Zero-Day:</h4>
+                        <div style="color: #b8c5f6; line-height: 2;">
+                            <div>📌 <strong>Day 0:</strong> Vulnerability ditemukan attacker (belum diketahui vendor)</div>
+                            <div>🚨 <strong>Day 1+:</strong> Exploited dalam wild attack</div>
+                            <div>🔍 <strong>Day N:</strong> Vendor menyadari vulnerability</div>
+                            <div>🔧 <strong>Day N+X:</strong> Patch dirilis</div>
+                            <div>📦 <strong>Day N+X+Y:</strong> User menginstall patch</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INSIDER THREAT SECTION -->
+                <div class="card">
+                    <div class="icon">🕵️</div>
+                    <h3>7. Insider Threat</h3>
+                    <p style="color: #b8c5f6;">Ancaman dari dalam organisasi oleh karyawan, partner, atau vendor yang memiliki akses legitimate.</p>
+                    
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>😠 Malicious Insider</h4>
+                            <p style="color: #b8c5f6;">Disgruntled employee yang sengaja mencuri/merusak data.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Mitigasi: Access control, Monitoring</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>😕 Negligent Insider</h4>
+                            <p style="color: #b8c5f6;">Karyawan yang tidak sengaja membuka data atau credential.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Mitigasi: Training, Awareness</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🎯 Compromised Insider</h4>
+                            <p style="color: #b8c5f6;">Karyawan yang credentials-nya sudah dicuri attacker.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Mitigasi: MFA, Monitoring</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ATTACK STATISTICS -->
+                <div class="card">
+                    <h3>📊 Statistik Cybersecurity 2024</h3>
+                    <div class="stats-grid" style="gap: 15px;">
+                        <div class="stat-card" style="text-align: left;">
+                            <div style="color: #667eea; font-size: 2.5em; font-weight: bold;">72%</div>
+                            <p style="color: #b8c5f6; margin: 10px 0 0 0; font-size: 0.95em;">Perusahaan pernah di-breach</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left;">
+                            <div style="color: #667eea; font-size: 2.5em; font-weight: bold;">7.15M</div>
+                            <p style="color: #b8c5f6; margin: 10px 0 0 0; font-size: 0.95em;">Malware samples per hari</p>
+                        </div>
+                        <div class="stat-card" style="text-align: left;">
+                            <div style="color: #667eea; font-size: 2.5em; font-weight: bold;">$10.93T</div>
+                            <p style="color: #b8c5f6; margin: 10px 0 0 0; font-size: 0.95em;">Global cybercrime cost annually</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 42%;"></div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: PROTEKSI -->
+            <div id="proteksi" class="section">
+                <h2>Cara Melindungi Diri 🛡️</h2>
+
+                <div class="alert alert-success">
+                    <strong>✅ Tips Keamanan:</strong> Keamanan berlapis (defense in depth) adalah pendekatan terbaik!
+                </div>
+
+                <div class="card">
+                    <h3>🔐 Password yang Kuat</h3>
+                    <p><strong>Karakteristik password yang baik:</strong></p>
+                    <ul style="margin: 15px 0 15px 20px; line-height: 1.8; color: #b8c5f6;">
+                        <li>Minimal 12-16 karakter</li>
+                        <li>Kombinasi huruf besar, kecil, angka, dan simbol</li>
+                        <li>Tidak menggunakan kata yang ada di kamus</li>
+                        <li>Hindari informasi personal</li>
+                        <li>Gunakan password berbeda untuk setiap akun</li>
+                        <li>Gunakan Password Manager</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🔄 Update Software Secara Berkala</h3>
+                    <p style="color: #b8c5f6;">Update software penting untuk menutup celah keamanan (vulnerability) yang baru ditemukan.</p>
+                    <ul style="margin: 15px 0 15px 20px; line-height: 1.8; color: #b8c5f6;">
+                        <li>Aktifkan automatic updates</li>
+                        <li>Update sistem operasi, browser, dan aplikasi</li>
+                        <li>Jangan gunakan software bajakan</li>
+                        <li>Hapus software yang sudah tidak didukung</li>
+                    </ul>
+                    <div style="background: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #28a745;">
+                        <strong style="color: #28a745;">💡 Fakta:</strong> <span style="color: #b8c5f6;">80% serangan berhasil karena software belum di-update atau patch belum diinstall.</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🔐 Two-Factor Authentication (2FA)</h3>
+                    <p style="color: #b8c5f6;">Menambahkan lapisan keamanan ekstra dengan memerlukan dua bentuk verifikasi:</p>
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <div class="icon">📱</div>
+                            <h4>SMS/Authenticator</h4>
+                            <p style="color: #b8c5f6;">Kode OTP via SMS atau aplikasi (Google Authenticator, Authy)</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">📧</div>
+                            <h4>Email</h4>
+                            <p style="color: #b8c5f6;">Link atau kode verifikasi via email</p>
+                        </div>
+                        <div class="grid-item">
+                            <div class="icon">👆</div>
+                            <h4>Biometrik</h4>
+                            <p style="color: #b8c5f6;">Sidik jari atau face recognition (Face ID, Touch ID)</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #667eea;">
+                        <strong style="color: #667eea;">✅ Keuntungan:</strong> <span style="color: #b8c5f6;">Mengurangi risiko unauthorized access hingga 99.9%</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🛡️ Firewall & Antivirus</h3>
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>🔥 Firewall</h4>
+                            <p style="color: #b8c5f6;">Memfilter traffic jaringan masuk dan keluar berdasarkan rules yang ditetapkan.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Types: Network, Host-based, WAF</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🦠 Antivirus</h4>
+                            <p style="color: #b8c5f6;">Mendeteksi dan menghapus malware dengan signature-based atau heuristic analysis.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Recommendation: Kaspersky, Bitdefender, Norton</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🛡️ Anti-Malware</h4>
+                            <p style="color: #b8c5f6;">Proteksi real-time dari malware, spyware, dan adware yang lebih advance.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Recommendation: Malwarebytes, Windows Defender</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>💾 Backup Data Reguler</h3>
+                    <p style="color: #b8c5f6;"><strong>Aturan 3-2-1 Backup:</strong></p>
+                    <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); padding: 20px; border-radius: 8px; margin: 15px 0; border: 1px solid rgba(102, 126, 234, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <div style="background: #667eea; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5em;">3</div>
+                            <div style="color: #b8c5f6;">
+                                <strong style="color: #667eea;">Salinan Data</strong><br>
+                                <span style="font-size: 0.9em;">Minimal 3 salinan data Anda (1 original + 2 backups)</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                            <div style="background: #667eea; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5em;">2</div>
+                            <div style="color: #b8c5f6;">
+                                <strong style="color: #667eea;">Media Berbeda</strong><br>
+                                <span style="font-size: 0.9em;">Gunakan 2 jenis media penyimpanan (HDD, SSD, Cloud)</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="background: #667eea; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5em;">1</div>
+                            <div style="color: #b8c5f6;">
+                                <strong style="color: #667eea;">Lokasi Offsite</strong><br>
+                                <span style="font-size: 0.9em;">Simpan 1 salinan di lokasi berbeda/cloud (Google Drive, Dropbox, iCloud)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🔒 Enkripsi Data</h3>
+                    <p style="color: #b8c5f6;">Enkripsi mengubah data menjadi format yang tidak dapat dibaca tanpa kunci dekripsi.</p>
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>🌐 HTTPS</h4>
+                            <p style="color: #b8c5f6;">Gunakan HTTPS untuk browsing, terutama di WiFi publik.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Ciri: URL dimulai dengan https://</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>💻 Full Disk Encryption</h4>
+                            <p style="color: #b8c5f6;">Enkripsi hard drive Anda (BitLocker, FileVault, LUKS).</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Protect: Jika device hilang/dicuri</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔐 VPN</h4>
+                            <p style="color: #b8c5f6;">Gunakan VPN di WiFi publik untuk enkripsi traffic.</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Provider: NordVPN, ExpressVPN, ProtonVPN</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>💬 End-to-End Encryption</h4>
+                            <p style="color: #b8c5f6;">Gunakan messaging apps dengan E2E (WhatsApp, Signal, Telegram).</p>
+                            <p style="font-size: 0.85em; color: #667eea;">Protect: Privasi komunikasi Anda</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>👥 Keamanan Media Sosial</h3>
+                    <ul style="margin-left: 20px; line-height: 2; color: #b8c5f6;">
+                        <li><strong style="color: #667eea;">Privacy Settings:</strong> Atur akun Anda menjadi private/friends only</li>
+                        <li><strong style="color: #667eea;">Oversharing:</strong> Jangan share terlalu banyak informasi personal</li>
+                        <li><strong style="color: #667eea;">Friend Requests:</strong> Hati-hati dengan friend request dari orang asing</li>
+                        <li><strong style="color: #667eea;">Link Verification:</strong> Verifikasi sebelum klik link dari orang yang tidak dikenal</li>
+                        <li><strong style="color: #667eea;">Location:</strong> Jangan posting jadwal liburan/lokasi secara real-time</li>
+                        <li><strong style="color: #667eea;">Public WiFi:</strong> Jangan akses media sosial di WiFi publik tanpa VPN</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📧 Email Security Best Practices</h3>
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="grid-item">
+                            <h4>🚫 Attachments</h4>
+                            <p style="color: #b8c5f6;">Jangan buka attachment dari pengirim tidak dikenal atau unexpected.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>🔗 Link Verification</h4>
+                            <p style="color: #b8c5f6;">Hover link sebelum klik untuk cek URL asli. Jangan langsung klik.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>⚠️ Urgency</h4>
+                            <p style="color: #b8c5f6;">Waspadai email dengan urgency tinggi yang meminta action cepat.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h4>📧 Email Berbeda</h4>
+                            <p style="color: #b8c5f6;">Gunakan email berbeda untuk akun penting (banking, email utama).</p>
+                        </div>
+                    </ul>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 57%;"></div>
+                </div>
+            </div>
+
+            <!-- SECTION 5: PRAKTIK -->
+            <div id="praktik" class="section">
+                <h2>Latihan Praktis 🎯</h2>
+
+                <div class="card">
+                    <h3>Skenario 1: Identifikasi Phishing Email</h3>
+                    <div style="background: rgba(10, 14, 39, 0.6); padding: 20px; border-radius: 10px; margin: 15px 0; border: 1px solid rgba(102, 126, 234, 0.3);">
+                        <strong style="color: #667eea;">Email yang diterima:</strong><br><br>
+                        <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px; color: #b8c5f6;">
+                            <strong>From:</strong> security@bankmandri.co.id<br>
+                            <strong>Subject:</strong> URGENT! Verifikasi Akun Anda Segera<br><br>
+                            Yth. Nasabah,<br>
+                            Akun anda terdeteksi aktivitas mencurigakan...
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="showPhishingAnalysis()">🔍 Analisis Email Ini</button>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 71%;"></div>
+                </div>
+            </div>
+
+            <!-- SECTION 6: QUIZ -->
+            <div id="quiz" class="section">
+                <h2>Uji Pemahaman Anda 📝</h2>
+
+                <div class="quiz">
+                    <div class="quiz-question">1. Apa kepanjangan dari CIA dalam konteks cybersecurity?</div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. Central Intelligence Agency</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">B. Computer Internet Access</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">C. Confidentiality, Integrity, Availability ✅</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. Cyber Information Analysis</div>
+                    </div>
+                </div>
+
+                <div class="quiz">
+                    <div class="quiz-question">2. Jenis malware yang mengenkripsi data dan meminta tebusan adalah?</div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. Virus</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">B. Trojan</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">C. Ransomware ✅</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. Spyware</div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3>📚 Sumber Belajar Tambahan</h3>
+            <p style="margin: 15px 0;">
+                • OWASP (Open Web Application Security Project)<br>
+                • NIST Cybersecurity Framework<br>
+                • Indonesia Cyber Security Forum (ICSF)
+            </p>
+            <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.7;">
+                © 2024 E-Modul Cybersecurity | Created by ALDO<br>
+                Dibuat untuk Tujuan Edukasi
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function startLearning() {
+            document.querySelector('.nav-tab').click();
+            window.scrollTo({top: window.innerHeight, behavior: 'smooth'});
+        }
+
+        function scrollToStats() {
+            document.getElementById('stats-section').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function checkAnswer(element, isCorrect) {
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.quiz-option');
+            
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('wrong');
+            }
+        }
+
+        function showPhishingAnalysis() {
+            alert('🚨 Ini adalah EMAIL PHISHING!\n\nTanda-tandanya:\n✗ Alamat email salah\n✗ Menciptakan urgency\n✗ URL mencurigakan\n✓ JANGAN klik linknya!');
+        }
+    </script>
+</body>
+</html>
